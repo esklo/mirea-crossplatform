@@ -1,15 +1,20 @@
-# Linux, Windows, Web
+## Linux, Windows, Web
 
 `make`
 
-`./app`
+```
+./app
+./windows.exe
+open web/index.html
+```
 
-`./windows.exe`
+> for web use webserver
 
-`open web/index.html`
+## bootloader
 
-# bootloader
+[linux kernel](http://ftp.swin.edu.au/archlinux/iso/2023.09.01/arch/boot/x86_64/)
 
 `chmod +x bootloader.sh`
 
-`./bootloader.sh -> ctrl+option+3` 
+`./bootloader.sh`
+> ctrl + alt + 3 (serial port)
