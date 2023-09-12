@@ -1,5 +1,4 @@
 .idea
 web/main.wasm
 app
-boot
 windows.exe

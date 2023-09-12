@@ -1,6 +1,6 @@
 //go:build js && wasm
 
-package main
+package exec
 
 import (
 	"mirea-crossplatform/game"
@@ -43,7 +43,7 @@ func proceedWebInput(_ js.Value, args []js.Value) interface{} {
 
 	if key == "Enter" {
 		proceedWebOutput("\n")
-		inputChannel <- webInput
+		InputChannel <- webInput
 		webInput = ""
 		return nil
 	}
@@ -52,7 +52,7 @@ func proceedWebInput(_ js.Value, args []js.Value) interface{} {
 	return nil
 }
 
-func run() {
+func Run() {
 
 	//Определяем куда будет выводиться webOutputElement
 	webOutputElement = js.Global().Get("document").Call("getElementById", "root")
@@ -61,5 +61,5 @@ func run() {
 	js.Global().Set("sendInput", js.FuncOf(proceedWebInput))
 
 	//Запускаем игру
-	go game.Start(proceedWebOutput, inputChannel, exitGame)
+	go game.Start(proceedWebOutput, InputChannel, ExitGame)
 }
