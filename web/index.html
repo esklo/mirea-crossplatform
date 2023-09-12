@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="wasm_exec.js"></script>
+    <style>
+        #root::-webkit-scrollbar {
+            display: none;
+        }
+
+        #root {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        #root {
+            overflow: auto;
+            max-height: 75vh;
+            width: 100%;
+            white-space: pre-wrap;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            background: #222;
+            color: gray;
+            font-family: monospace;
+        }
+
+        #root:after {
+            content: ' ';
+            background: white;
+            line-height: 17px;
+            margin-left: 3px;
+            -webkit-animation: blink 0.8s infinite;
+            width: 7px;
+            height: 15px;
+        }
+
+        @-webkit-keyframes blink {
+            0% {
+                background: #222
+            }
+            50% {
+                background: white;
+            }
+            100% {
+                background: #222
+            }
+        }
+
+    </style>
+    <script>
+        if (WebAssembly) {
+            const go = new Go();
+            WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+                go.run(result.instance);
+
+                document.onkeydown = function (event) {
+                    scrollToBottom()
+                    sendInput(event.key)
+                };
+            });
+        } else {
+            console.log("WebAssembly is not supported in your browser")
+        }
+    </script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+    let el = document.getElementById("root");
+    let autoScrollEnabled = true;
+
+    function scrollToBottom() {
+        el.scrollTop = el.scrollHeight;
+    }
+
+    function isScrollAtBottom() {
+        return el.scrollHeight - el.scrollTop === el.clientHeight;
+    }
+
+    setInterval(function () {
+        if (autoScrollEnabled) {
+            scrollToBottom();
+        }
+    }, 100);
+    el.addEventListener("scroll", function () {
+        autoScrollEnabled = isScrollAtBottom();
+        console.log(autoScrollEnabled)
+    });
+</script>
+</body>
+</html>
