@@ -1,1 +1,15 @@
-`GOOS=linux GOARCH=amd64 u-root  -defaultsh="" ./init && qemu-system-x86_64 -kernel /Users/eugene/Downloads/vmlinuz-linux -initrd /tmp/initramfs.linux_amd64.cpio -append "console=ttyS0"`
+# Linux, Windows, Web
+
+`make`
+
+`./app`
+
+`./windows.exe`
+
+`open web/index.html`
+
+# bootloader
+
+`chmod +x bootloader.sh`
+
+`./bootloader.sh -> ctrl+option+3` 
