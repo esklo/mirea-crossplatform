@@ -77,3 +77,5 @@
     └── wasm_exec.js
 ```
 
+## Demo
+[YouTube](https://www.youtube.com/watch?v=boAdzGuOIRg)
