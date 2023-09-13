@@ -22,6 +22,7 @@
 > For bootloader I use qemu with linux kernel. program compiles into initramfs with u-root
 
 ### Install [u-root](https://github.com/u-root/u-root)
+
 `go install github.com/u-root/u-root@latest`
 
 ### Install [QEMU](https://www.qemu.org/download/)
@@ -37,12 +38,8 @@
 
 ### Download [vintbas](http://www.vintage-basic.net/download.html) to /game dir
 
-`cd game && go test`
-> *Since the program uses random, we need to get rid of it*
->
-> change `X=INT(10*RND(1)+1)` to `X=0` in `tvplot.bas` file
->
-> change `return rand.Intn(10) + 1` to `return 1` in `game/main.go` file
+`cd game && sudo go test`
+> Since this program uses random, go will try to change the time on your machine
 
 ## Structure
 
@@ -77,4 +74,5 @@
 ```
 
 ## Demo
+
 [YouTube](https://www.youtube.com/watch?v=boAdzGuOIRg)

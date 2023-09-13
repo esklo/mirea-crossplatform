@@ -7,9 +7,11 @@ import (
 )
 
 var outputHandler func(interface{})
+var randomData []int
 
-func Start(proceedOutput func(interface{}), inputChannel chan string, exitGame chan struct{}) {
+func Start(proceedOutput func(interface{}), inputChannel chan string, exitGame chan struct{}, randomSource []int) {
 	outputHandler = proceedOutput
+	randomData = randomSource
 
 	printHeader()
 
@@ -39,6 +41,11 @@ func printHeader() {
 }
 
 func randomInt() int {
+	if len(randomData) > 0 {
+		x := randomData[0]
+		randomData = randomData[1:]
+		return x
+	}
 	return rand.Intn(10) + 1
 }
 
