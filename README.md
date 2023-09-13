@@ -24,5 +24,6 @@ open web/index.html
 >
 > change `return rand.Intn(10) + 1` to `return 1` in `game/main.go` file
 >
-> Download [Vintage BASIC](http://www.vintage-basic.net/download.html) to root 
+> Download [Vintage BASIC](http://www.vintage-basic.net/download.html) to /game dir
+> 
 > Download [linux kernel](http://ftp.swin.edu.au/archlinux/iso/2023.09.01/arch/boot/x86_64/) to root
