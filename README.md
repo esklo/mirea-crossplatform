@@ -12,8 +12,6 @@ open web/index.html
 
 ## Bootloader
 
-[linux kernel](http://ftp.swin.edu.au/archlinux/iso/2023.09.01/arch/boot/x86_64/)
-
 `chmod +x bootloader.sh`
 
 `./bootloader.sh`
@@ -25,3 +23,6 @@ open web/index.html
 > change `X=INT(10*RND(1)+1)` to `X=0` in `.bas` file
 >
 > change `return rand.Intn(10) + 1` to `return 1` in `game/main.go` file
+>
+> Download [Vintage BASIC](http://www.vintage-basic.net/download.html) to root 
+> Download [linux kernel](http://ftp.swin.edu.au/archlinux/iso/2023.09.01/arch/boot/x86_64/) to root

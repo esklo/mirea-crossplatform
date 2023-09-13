@@ -13,7 +13,7 @@ func proceedOutput(text interface{}) {
 }
 
 func TestBasicCode(t *testing.T) {
-	cmd := exec.Command("/Users/eugene/Downloads/vintage-basic-1.0.3/bin/vintbas", "tvplot.bas")
+	cmd := exec.Command("vintbas", "tvplot.bas")
 	pipe, err := cmd.StdinPipe()
 	if err != nil {
 		t.Fatal(err)
