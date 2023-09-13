@@ -13,7 +13,7 @@ func proceedOutput(text interface{}) {
 }
 
 func TestBasicCode(t *testing.T) {
-	cmd := exec.Command("vintbas", "tvplot.bas")
+	cmd := exec.Command("./vintbas", "tvplot.bas")
 	pipe, err := cmd.StdinPipe()
 	if err != nil {
 		t.Fatal(err)
@@ -30,7 +30,7 @@ func TestBasicCode(t *testing.T) {
 	pipe.Close()
 	expectedOutput, err := cmd.CombinedOutput()
 	if err != nil {
-		t.Fatalf("Ошибка выполнения Basic программы: %v", err)
+		t.Fatalf("Basic error: %v", err)
 	}
 
 	inputChannel := make(chan string)
@@ -41,6 +41,6 @@ func TestBasicCode(t *testing.T) {
 	<-exitChannel
 
 	if string(expectedOutput) != output {
-		t.Errorf("Вывод Basic программы не соответствует ожидаемому результату.\nОжидаемо: %s\nФактически: %s", expectedOutput, string(output))
+		t.Errorf("The output of the Basic program does not match the expected result.\nExpected: %s\nActually: %s", expectedOutput, output)
 	}
 }

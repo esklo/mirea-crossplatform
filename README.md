@@ -1,16 +1,27 @@
-## Linux, Windows, Web
+## TV PLot (Crossplatofrm)
+
+## Build
 
 `make`
 
-```
-./app
-./windows.exe
-open web/index.html
-```
+#### linux
 
-> for web use webserver
+`./app`
+
+#### windows
+
+`./windows.exe`
+
+#### web
+
+`go run web/server.go`
+> Open [127.0.0.1:8080](http://127.0.0.1:8080) in browser
 
 ## Bootloader
+
+### Install [u-root](github.com/u-root/u-root)
+
+`go install github.com/u-root/u-root@latest`
 
 `chmod +x bootloader.sh`
 
@@ -20,10 +31,12 @@ open web/index.html
 ## Testing
 
 `cd game && go test`
-> change `X=INT(10*RND(1)+1)` to `X=0` in `.bas` file
+> *Since the program uses random, we need to get rid of it*
+>
+> change `X=INT(10*RND(1)+1)` to `X=0` in `tvplot.bas` file
 >
 > change `return rand.Intn(10) + 1` to `return 1` in `game/main.go` file
 >
-> Download [Vintage BASIC](http://www.vintage-basic.net/download.html) to /game dir
-> 
-> Download [linux kernel](http://ftp.swin.edu.au/archlinux/iso/2023.09.01/arch/boot/x86_64/) to root
+> Download [vintbas](http://www.vintage-basic.net/download.html) to /game dir
+>
+> Download [vmlinuz-linux](http://ftp.swin.edu.au/archlinux/iso/2023.09.01/arch/boot/x86_64/) to project root

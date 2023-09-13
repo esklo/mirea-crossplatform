@@ -2,3 +2,5 @@
 web/main.wasm
 app
 windows.exe
+game/vintbas
+vmlinuz-linux
