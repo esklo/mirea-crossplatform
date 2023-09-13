@@ -22,10 +22,11 @@
 > For bootloader I use qemu with linux kernel. program compiles into initramfs with u-root
 
 ### Install [u-root](https://github.com/u-root/u-root)
+`go install github.com/u-root/u-root@latest`
 
 ### Install [QEMU](https://www.qemu.org/download/)
 
-`go install github.com/u-root/u-root@latest`
+### Download [vmlinuz-linux](http://ftp.swin.edu.au/archlinux/iso/2023.09.01/arch/boot/x86_64/) to project root
 
 `chmod +x bootloader.sh`
 
@@ -35,8 +36,6 @@
 ## Testing
 
 ### Download [vintbas](http://www.vintage-basic.net/download.html) to /game dir
-
-### Download [vmlinuz-linux](http://ftp.swin.edu.au/archlinux/iso/2023.09.01/arch/boot/x86_64/) to project root
 
 `cd game && go test`
 > *Since the program uses random, we need to get rid of it*
