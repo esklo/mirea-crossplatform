@@ -21,7 +21,7 @@
 
 > For bootloader I use qemu with linux kernel. program compiles into initramfs with u-root
 
-### Install [u-root](github.com/u-root/u-root)
+### Install [u-root](https://github.com/u-root/u-root)
 
 ### Install [QEMU](https://www.qemu.org/download/)
 

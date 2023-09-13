@@ -27,7 +27,10 @@ func TestBasicCode(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	pipe.Close()
+	err = pipe.Close()
+	if err != nil {
+		t.Fatal(err)
+	}
 	expectedOutput, err := cmd.CombinedOutput()
 	if err != nil {
 		t.Fatalf("Basic error: %v", err)
