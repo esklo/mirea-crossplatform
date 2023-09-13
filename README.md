@@ -6,11 +6,11 @@
 
 #### linux
 
-`./app`
+`./build/linux`
 
 #### windows
 
-`./windows.exe`
+`./build/windows.exe`
 
 #### web
 
@@ -19,7 +19,11 @@
 
 ## Bootloader
 
+> For bootloader I use qemu with linux kernel. program compiles into initramfs with u-root
+
 ### Install [u-root](github.com/u-root/u-root)
+
+### Install [QEMU](https://www.qemu.org/download/)
 
 `go install github.com/u-root/u-root@latest`
 
@@ -30,13 +34,46 @@
 
 ## Testing
 
+### Download [vintbas](http://www.vintage-basic.net/download.html) to /game dir
+
+### Download [vmlinuz-linux](http://ftp.swin.edu.au/archlinux/iso/2023.09.01/arch/boot/x86_64/) to project root
+
 `cd game && go test`
 > *Since the program uses random, we need to get rid of it*
 >
 > change `X=INT(10*RND(1)+1)` to `X=0` in `tvplot.bas` file
 >
 > change `return rand.Intn(10) + 1` to `return 1` in `game/main.go` file
->
-> Download [vintbas](http://www.vintage-basic.net/download.html) to /game dir
->
-> Download [vmlinuz-linux](http://ftp.swin.edu.au/archlinux/iso/2023.09.01/arch/boot/x86_64/) to project root
+
+## Structure
+
+```
+.
+├── Makefile
+├── README.md
+├── bootloader.sh
+├── build
+│   ├── linux
+│   └── windows.exe
+├── exec -> start game proccess
+│   ├── cli.go -> compiles if not web
+│   ├── exec.go -> entrypoint
+│   └── web.go -> compiles only for web
+├── game -> gameport
+│   ├── main.go
+│   ├── main_test.go
+│   ├── tvplot.bas
+│   └── vintbas
+├── go.mod
+├── go.sum
+├── init -> entrypoint for bootloader (init – required name for u-root)
+│   └── init.go
+├── main.go
+├── vmlinuz-linux
+└── web
+    ├── index.html
+    ├── main.wasm
+    ├── server.go
+    └── wasm_exec.js
+```
+

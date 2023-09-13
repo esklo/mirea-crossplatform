@@ -1,6 +1,5 @@
 .idea
 web/main.wasm
-app
-windows.exe
+build/
 game/vintbas
 vmlinuz-linux

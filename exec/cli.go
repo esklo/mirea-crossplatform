@@ -20,8 +20,10 @@ func Run() {
 	go func() {
 		for {
 			readString, _ := reader.ReadString('\n')
+			// cleanup string
 			readString = strings.TrimRight(readString, "\n")
 			readString = strings.TrimRight(readString, "\r")
+			// send input to the game
 			InputChannel <- readString
 		}
 	}()

@@ -11,6 +11,7 @@ import (
 var webOutputElement js.Value
 var webInput string
 
+// keys to avoid from keyboard
 var stopKeys = []string{"Meta", "Shift", "Tab", "CapsLock", "Alt", "Control"}
 
 func proceedWebOutput(text interface{}) {
@@ -19,6 +20,7 @@ func proceedWebOutput(text interface{}) {
 	webOutputElement.Set("textContent", newText)
 }
 
+// implementation of backspace
 func proceedWebBackspace() {
 	currentText := webOutputElement.Get("textContent").String()
 	newText := currentText
@@ -53,13 +55,11 @@ func proceedWebInput(_ js.Value, args []js.Value) interface{} {
 }
 
 func Run() {
-
-	//Определяем куда будет выводиться webOutputElement
+	// define output element
 	webOutputElement = js.Global().Get("document").Call("getElementById", "root")
 
-	//Регистрируем функцию, которую будем вызывать из JS для передачи данных в go
+	// we will be able to call this function from js
 	js.Global().Set("sendInput", js.FuncOf(proceedWebInput))
 
-	//Запускаем игру
 	go game.Start(proceedWebOutput, InputChannel, ExitGame)
 }
