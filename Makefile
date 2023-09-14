@@ -1,7 +1,7 @@
-all: web/main.wasm linux windows.exe
+all: web/main.wasm build/linux build/windows.exe
 web/main.wasm:
 	GOOS=js GOARCH=wasm go build -o web/main.wasm
-linux:
+build/linux:
 	go build -o build/linux
-windows.exe:
+build/windows.exe:
 	GOOS=windows GOARCH=amd64 go build -o build/windows.exe
