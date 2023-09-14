@@ -15,7 +15,7 @@ func proceedCliOutput(text interface{}) {
 }
 
 func Run() {
-	go game.Start(proceedCliOutput, InputChannel, ExitGame, nil)
+	go game.Start(proceedCliOutput, InputChannel, ExitGame)
 	reader := bufio.NewReader(os.Stdin)
 	go func() {
 		for {

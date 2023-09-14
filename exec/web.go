@@ -61,5 +61,5 @@ func Run() {
 	// we will be able to call this function from js
 	js.Global().Set("sendInput", js.FuncOf(proceedWebInput))
 
-	go game.Start(proceedWebOutput, InputChannel, ExitGame, nil)
+	go game.Start(proceedWebOutput, InputChannel, ExitGame)
 }

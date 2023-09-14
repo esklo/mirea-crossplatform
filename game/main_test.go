@@ -13,13 +13,6 @@ func proceedOutput(text interface{}) {
 }
 
 func TestBasicCode(t *testing.T) {
-
-	t.Cleanup(func() {
-		exec.Command("sudo", "systemsetup", "-setusingnetworktime", "on").Run()
-	})
-	exec.Command("sudo", "systemsetup", "-setusingnetworktime", "off").Run()
-	exec.Command("sudo", "date", "0415110022").Run()
-
 	cmd := exec.Command("./vintbas", "tvplot.bas")
 	pipe, err := cmd.StdinPipe()
 	if err != nil {
@@ -42,10 +35,10 @@ func TestBasicCode(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Basic error: %v", err)
 	}
+
 	inputChannel := make(chan string)
 	exitChannel := make(chan struct{})
-	// values are hardcoded to match basic output for date 0415110022
-	go Start(proceedOutput, inputChannel, exitChannel, []int{4, 7, 8, 3, 5, 10, 4, 5, 2, 1, 7, 1})
+	go Start(proceedOutput, inputChannel, exitChannel)
 	inputChannel <- "YES"
 	inputChannel <- "NO"
 	<-exitChannel
