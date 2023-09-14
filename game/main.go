@@ -7,9 +7,17 @@ import (
 )
 
 var outputHandler func(interface{})
+var randomFunc func() int
 
-func Start(proceedOutput func(interface{}), inputChannel chan string, exitGame chan struct{}) {
+func Start(proceedOutput func(interface{}), inputChannel chan string, exitGame chan struct{}, rndFunc func() int) {
 	outputHandler = proceedOutput
+	if rndFunc != nil {
+		randomFunc = rndFunc
+	} else {
+		randomFunc = func() int {
+			return rand.Intn(10) + 1
+		}
+	}
 
 	printHeader()
 
@@ -38,10 +46,6 @@ func printHeader() {
 	outputHandler("HERE IS THE FIRST PLOT:\n")
 }
 
-func randomInt() int {
-	return rand.Intn(10) + 1
-}
-
 func generatePlot() (string, string, string, string, string, string) {
 	plots := [][10]string{
 		{"PROGRAM", "REPORT", "SPECIAL", "SERIES", "STORY", "PROGRAM", "REPORT", "SPECIAL", "SERIES", "STORY"},
@@ -54,7 +58,7 @@ func generatePlot() (string, string, string, string, string, string) {
 
 	values := []string{}
 	for _, plot := range plots {
-		values = append(values, plot[randomInt()-1])
+		values = append(values, plot[randomFunc()-1])
 	}
 
 	return values[0], values[1], values[2], values[3], values[4], values[5]
