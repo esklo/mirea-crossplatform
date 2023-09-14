@@ -41,8 +41,6 @@
 > *Since the program uses random, we need to get rid of it*
 >
 > change `X=INT(10*RND(1)+1)` to `X=0` in `tvplot.bas` file
->
-> change `return rand.Intn(10) + 1` to `return 1` in `game/main.go` file
 
 ## Structure
 
@@ -65,7 +63,7 @@
 │   └── vintbas
 ├── go.mod
 ├── go.sum
-├── init -> entrypoint for bootloader (init – required name for u-root)
+├── init -> entrypoint for bootloader (init – required name by u-root)
 │   └── init.go
 ├── main.go
 ├── vmlinuz-linux
